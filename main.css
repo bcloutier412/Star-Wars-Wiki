@@ -13,9 +13,9 @@
     src: url('fonts/Starjedi.ttf');
 }
 body {
-    background: url('images/starsbackground.jpg');
+    background: url('images/starwarsbackground.jpg');
     background-position-x: center;
-    background-size: cover;
+    /* background-size: cover; */
     overflow: hidden;
 }
 
@@ -75,26 +75,27 @@ nav {
 
 
 /* MAIN CONTENT CONTAINER */
-main {
+.main-search-container {
     font-family: filled;
     color: #e5c926;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    transition: transform .3s;
 }
 
 /* STAR WARS HEADER */
-main header {
+.main-search-container header {
     font-size: 100px;
     line-height: 80px;
-    margin-top: 30px;
-    transform: translateX(5px);
-    text-shadow: #ced4da 1px 0 100px;
+    margin-top: 100px;
+    text-shadow: black 5px 5px 1px;
 }
 
 /* SEARCH BAR */
 .inputContainer {
-    margin-top: 30px;
+    margin-top: 40px;
     background-color: black;
     color: white;
     border: 1px solid #e5c926;  
@@ -103,6 +104,12 @@ main header {
     border-radius: 24px;
     display: flex;
     align-items: center;
+    transition: box-shadow .2s linear;
+    box-shadow: #ced4da 0px 0px 10px;
+    margin-bottom: 20px;
+}
+.inputContainer:hover {
+    box-shadow: #2E67F8 0px 0px 20px;
 }
 .inputContainer img {
     width: auto;
@@ -137,6 +144,9 @@ main header {
     padding-left: 8px;
     border-left: 1px solid #e5c926;
 }
+.inputContainer button:hover {
+    cursor: pointer;
+}
 
 
 /* RESPONSIVE MEDIA QUERIES */
@@ -144,16 +154,23 @@ main header {
     .inputContainer {
         width: 400px;
     }
-    main header {
+    .main-search-container header {
         font-size: 80px;
         line-height: 65px;
+    }
+    .main-search-container {
+        transform: scaleX(0);
     }
 }
 @media (max-width: 400px) {
     .inputContainer {
-        width: 380px;
+        width: 360px;
     }
-    main header {
+    .inputContainer input {
+        letter-spacing: 0;
+        width: 230px;
+    }
+    .main-search-container header {
         font-size: 80px;
         line-height: 65px;
     }
