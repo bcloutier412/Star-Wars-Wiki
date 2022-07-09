@@ -1,7 +1,7 @@
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input')
 searchBtn.addEventListener('click', function() {
-    console.log(searchInput.value)
+    mainSearchContainer.classList.toggle('collapse-z')
 })
 
 /*
