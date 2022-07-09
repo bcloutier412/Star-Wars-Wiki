@@ -169,19 +169,24 @@ nav {
 
 /* MAIN CONTENT CONTAINER */
 .main-content-container {
-    width: 50%;
+    max-width: 700px;
+    min-width: 400px;
     height: 30px;
     background-color: blue; 
     margin: auto;   
 }
 /* Page Loader */
-#page-loader img{
+.page-loader {
+    opacity: 0;
+    transition: opacity .5s;
+}
+.page-loader img{
     height: 200px;
     width: auto;
     position: absolute;
     top: 50%;  
     left: 50%;
-    transform: translate(-50%, -70%); 
+    transform: translate(-50%, -110%); 
 }
 
 /* RESPONSIVE MEDIA QUERIES */

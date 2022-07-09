@@ -1,8 +1,11 @@
 const searchBtn = document.querySelector('#search-btn');
-const searchInput = document.querySelector('#search-input')
+const searchInput = document.querySelector('#search-input');
 searchBtn.addEventListener('click', function() {
-    mainSearchContainer.classList.toggle('collapse-z')
-})
+    mainSearchContainer.classList.toggle('collapse-z');
+    setTimeout(() => {
+        pageLoader.classList.toggle('reveal');
+    }, 200);
+});
 
 /*
     @desc: Reveals all of the nav-items
