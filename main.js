@@ -3,8 +3,16 @@ const searchInput = document.querySelector('#search-input');
 searchBtn.addEventListener('click', function() {
     mainSearchContainer.classList.toggle('collapse-z');
     setTimeout(() => {
-        pageLoader.classList.toggle('reveal');
-    }, 200);
+        pageLoader.classList.toggle('opacity1')
+        mainSearchContainer.classList.toggle('hidden')
+        mainContentContainer.classList.toggle('hidden')
+        setTimeout(() => {
+            pageLoader.classList.toggle('opacity1')
+            setTimeout(() => {
+                mainContentContainer.classList.toggle('collapse-z')
+            }, 500)
+        }, 1000)
+    }, 300)
 });
 
 /*

@@ -15,8 +15,6 @@
 body {
     background: url('images/starwarsbackground.jpg');
     background-position-x: center;
-    /* background-size: cover; */
-    overflow: hidden;
 }
 
 .vingette {
@@ -102,13 +100,13 @@ nav {
     align-items: center;
     overflow: hidden;
     transition: transform .3s;
+    margin-top: 100px;
 }
 
 /* STAR WARS HEADER */
 .main-search-container header {
     font-size: 100px;
     line-height: 80px;
-    margin-top: 100px;
     text-shadow: black 5px 5px 1px;
 }
 
@@ -169,35 +167,35 @@ nav {
 
 /* MAIN CONTENT CONTAINER */
 .main-content-container {
-    max-width: 700px;
-    min-width: 400px;
-    height: 30px;
-    background-color: blue; 
-    margin: auto;   
+    width: 700px;
+    height: 500px;
+    background-color: rgba(47, 129, 146, 0.8); 
+    border: 3px solid #0096c7;
+    border-radius: 20px;
+    margin: 10px auto; 
+    transition: transform 1s;  
 }
 /* Page Loader */
 .page-loader {
     opacity: 0;
-    transition: opacity .5s;
-}
-.page-loader img{
-    height: 200px;
-    width: auto;
+    transition: opacity .5s; 
     position: absolute;
     top: 50%;  
     left: 50%;
-    transform: translate(-50%, -110%); 
+    transform: translate(-50%, -50%);
+}
+.page-loader img{
+    height: auto;
+    width: 200px;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 750px) {
+    .main-content-container {
+        width: 580px;
+    }
+}
 @media (max-width: 600px) {
-    .inputContainer {
-        width: 400px;
-    }
-    .main-search-container header {
-        font-size: 80px;
-        line-height: 65px;
-    }
     #nav-img {
         margin: 20px;
         width: 40px;
@@ -215,6 +213,16 @@ nav {
         transform: translateX(-170px);
         opacity: 0;
     }
+    .main-search-container header {
+        font-size: 80px;
+        line-height: 65px;
+    }
+    .inputContainer {
+        width: 400px;
+    }
+    .main-content-container {
+        width: 450px;
+    }
 }
 @media (max-width: 400px) {
     .inputContainer {
@@ -227,6 +235,9 @@ nav {
     .main-search-container header {
         font-size: 80px;
         line-height: 65px;
+    }
+    .main-content-container {
+        width: 360px;
     }
 }
 /* HELPER CLASSES */
@@ -242,4 +253,7 @@ nav {
 }
 .collapse-z {
     transform: scaleX(0);
+}
+.opacity1 {
+    opacity: 1;
 }
