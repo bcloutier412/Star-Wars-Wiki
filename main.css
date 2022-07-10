@@ -221,7 +221,7 @@ nav {
         width: 400px;
     }
     .main-content-container {
-        width: 450px;
+        width: 360px;
     }
 }
 @media (max-width: 400px) {
@@ -237,7 +237,7 @@ nav {
         line-height: 65px;
     }
     .main-content-container {
-        width: 330px;
+        width: 360px;
     }
 }
 /* HELPER CLASSES */
