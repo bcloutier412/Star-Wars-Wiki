@@ -2,6 +2,7 @@ const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
 searchBtn.addEventListener('click', function() {
     mainSearchContainer.classList.toggle('collapse-z');
+    pageLoader.classList.toggle('hidden')
     setTimeout(() => {
         pageLoader.classList.toggle('opacity1')
         mainSearchContainer.classList.toggle('hidden')
@@ -10,6 +11,7 @@ searchBtn.addEventListener('click', function() {
             pageLoader.classList.toggle('opacity1')
             setTimeout(() => {
                 mainContentContainer.classList.toggle('collapse-z')
+                pageLoader.classList.toggle('hidden')
             }, 500)
         }, 1000)
     }, 300)
