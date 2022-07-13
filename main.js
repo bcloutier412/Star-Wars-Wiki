@@ -1,6 +1,7 @@
 const searchBtn = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#search-input');
-searchBtn.addEventListener('click', function() {
+
+var search = function() {
     mainSearchContainer.classList.toggle('collapse-z');
     pageLoader.classList.toggle('hidden')
     setTimeout(() => {
@@ -15,7 +16,7 @@ searchBtn.addEventListener('click', function() {
             }, 500)
         }, 1000)
     }, 300)
-});
+}
 
 /*
     @desc: Reveals all of the nav-items
@@ -30,3 +31,12 @@ var toggleNavItems = function() {
     @desc: Clicking the nav toggle button will reveal all the nav-items
 */
 navToggle.addEventListener('click', toggleNavItems)
+
+searchBtn.addEventListener('click', search);
+
+document.addEventListener('keyup', event => {
+    if (event.key === 'Enter') {
+        search();
+    };
+    console.log(event.key)
+});
