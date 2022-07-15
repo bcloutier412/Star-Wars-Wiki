@@ -89,14 +89,18 @@ var populateData = function() {
         }, 500);
     })
 }
+
+/*
+    @desc: class toggled animations and executes the populate data function
+*/
 var search = function() {
     mainSearchContainer.classList.toggle('collapse-z');
     pageLoader.classList.toggle('hidden')
+    populateData()
     setTimeout(() => {
         pageLoader.classList.toggle('opacity1')
         mainSearchContainer.classList.toggle('hidden')
         mainContentContainer.classList.toggle('hidden')
-        populateData()
     }, 300)
 }
 
