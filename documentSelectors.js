@@ -8,3 +8,5 @@ const pageLoader = document.querySelector('.page-loader')
 
 //MAIN CONTENT CONTAINER
 const mainContentContainer = document.querySelector('.main-content-container')
+const imageContainer = document.querySelector('#image-container');
+const descriptionContainer = document.querySelector('#description-container');

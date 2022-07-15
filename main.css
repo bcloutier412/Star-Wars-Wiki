@@ -187,15 +187,29 @@ nav {
     transition: transform 1s;
     box-shadow: rgb(64,140,212) 1px -2px 30px, 0px 0px 10px rgb(21, 47, 72) inset;
     display: flex;
+    gap: 10px;
     justify-content: center;
-    align-items: center;
+    padding: 10px;
 }
 
 #image-container {
-    min-width: 50%;
+    min-width: 45%;
     height: 70%;
     background: url('https://upload.wikimedia.org/wikipedia/en/9/9b/Luke_Skywalker.png');
     background-position-x: center;
+    border-radius: 20px;
+}
+.main-content-container section {
+    height: 70%;
+    font-family: hologram;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(21, 47, 72);
+    text-shadow: rgba(28, 119, 223, 0.6) 2px 2px 1px;
+    vertical-align: middle;
+}
+.data {
+    color: rgb(147, 197, 255);
 }
 .bottom-triangle {
     position: absolute;
@@ -266,6 +280,9 @@ nav {
         border-left: 171px solid transparent;
         border-right: 171px solid transparent;
         border-top: 240px solid rgba(206, 212, 218, .2);
+    }
+    .main-content-container section {
+        font-size: 16px;
     }
 }
 
