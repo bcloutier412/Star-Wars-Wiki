@@ -1,63 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars</title>
-    <link rel="stylesheet" href="main.css">
-</head>
+    <link rel="stylesheet" href="main.css" />
+  </head>
 
-<body>
+  <body>
     <div class="vingette"></div>
     <nav>
-        <img src="images/clone-helmet.png" alt="" id="nav-img">
-        <ul id="nav-items">
-            <li class="nav-item selected-nav-item">
-                home
-            </li>
-            <li class="nav-item">
-                gallery
-            </li>
-            <li class="nav-item">
-                shop
-            </li>
-        </ul>
-        <div id="nav-toggle">
-            <div class="toggle-line">
-
-            </div>
-            <div class="toggle-line">
-
-            </div>
-            <div class="toggle-line">
-
-            </div>
-        </div>
+      <img src="images/clone-helmet.png" alt="" id="nav-img" />
+      <ul id="nav-items">
+        <li class="nav-item selected-nav-item">home</li>
+        <li class="nav-item">gallery</li>
+        <li class="nav-item">shop</li>
+      </ul>
+      <div id="nav-toggle">
+        <div class="toggle-line"></div>
+        <div class="toggle-line"></div>
+        <div class="toggle-line"></div>
+      </div>
     </nav>
     <div class="main-search-container">
-        <header>
-            STAR<br>WARS
-        </header>
-        <div class="inputContainer">
-            <img src="images/searchicon.png" alt="">
-            <input id="search-input" type="text" placeholder="search 'luke skywalker'">
-            <button id="search-btn">search</button>
+      <header>STAR<br />WARS</header>
+      <div class="inputContainer">
+        <div class="inputWrapper">
+          <img src="images/searchicon.png" alt="" />
+          <input
+            id="search-input"
+            type="text"
+            placeholder="search 'luke skywalker'"
+          />
+          <button id="search-btn">search</button>
         </div>
+        <ul>
+            <li>hi</li>
+        </ul>
+      </div>
     </div>
     <div class="main-content-container collapse-z hidden">
-        <div id="image-container">
-        </div>
-        <section id="description-container">
-        </section>
-        <div class="bottom-triangle"></div>
+      <div id="image-container"></div>
+      <section id="description-container"></section>
+      <div class="bottom-triangle"></div>
     </div>
     <div class="page-loader hidden">
-        <img src="images/starwarsloading.gif">
+      <img src="images/starwarsloading.gif" />
     </div>
     <script src="documentSelectors.js"></script>
     <script src="main.js"></script>
-</body>
-
+  </body>
 </html>
