@@ -1,6 +1,17 @@
-const searchBtn = document.querySelector('#search-btn');
-const searchInput = document.querySelector('#search-input');
+/*
+    @desc: Converts one Unit to another ex: cm -> ft, kg -> lb
+*/
+var centimetersToFeet = function(centimeters) {
+    return centimeters * 0.0328084
+}
+var kilogramsToPounds = function(kilograms) {
+    return kilograms * 2.20462
+}
 
+/*
+    @desc: Converts the inputed film name string to a predetermined abbreviation
+    @param: The film name str to convert to abbreviation
+*/
 var shortenFilmName = function(filmStr) {
     switch(filmStr) {
         case 'A New Hope':
@@ -14,6 +25,11 @@ var shortenFilmName = function(filmStr) {
     }
     return filmStr
 }
+/*
+    @desc: Takes a give array of film endpoints and fetches the data at each URL.
+    It then pushes a comma separated list as the innerText of the #films element
+    @param: films: The array of endpoint URLS
+*/  
 var renderFilms = async function(films) {
     const filmsArray = []
     for (let film of films){
@@ -23,22 +39,29 @@ var renderFilms = async function(films) {
     const str = filmsArray.join(', ')
     document.querySelector('#films').innerText = str
 }
+/* 
+    @desc: Uses the fetch API and returns the title of the film
+    @param: The films API endpoint
+*/
 var getFilm = async function(filmUrl) {
     try {
         let response = await fetch(filmUrl);
         let data = await response.json()
         return data.title
     } catch(error) {
+        descriptionContainer.innerHTML = 'Failed To Fetch Data'
         console.log(error)
     }
 
 }
-var centimetersToFeet = function(centimeters) {
-    return centimeters * 0.0328084
-}
-var kilogramsToPounds = function(kilograms) {
-    return kilograms * 2.20462
-}
+/*
+    @desc: fetches the data from the API endpoint corresponding to the inputed character number.
+        Populates the character description with the data and executes the renderFilm function 
+        with the array of films as the argument 
+    @param: The character number
+    @catch: populates the character description with a failed message
+    @finally: removes the page loader and toggles the main content collapse class to have the content appear
+*/
 var populateData = function() {
     fetch('https://swapi.dev/api/people/1')
     .then(response => response.json())
@@ -57,6 +80,7 @@ var populateData = function() {
     })
     .catch(error => {
         descriptionContainer.innerHTML = 'Failed To Fetch Data'
+        console.error(error)
     })
     .finally(function() {
         pageLoader.classList.toggle('opacity1')
@@ -98,3 +122,7 @@ document.addEventListener('keyup', event => {
     };
     console.log(event.key)
 });
+
+searchInput.addEventListener('input', function() {
+    // alert(this.value)
+})
