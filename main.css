@@ -18,12 +18,12 @@ body {
     background: url('images/starwarsbackground.jpg');
     background-position-x: center;
     background-size: auto;
-    -ms-overflow-style: none; /* for Internet Explorer, Edge */
-    scrollbar-width: none; /* for Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
-    display: none; /* for Chrome, Safari, and Opera */
+    display: none;
 }
 
 /* NAV BAR */
@@ -130,6 +130,9 @@ nav {
     box-shadow: #ced4da 0px 0px 10px;
     transition: box-shadow .2s linear;
 }
+.inputContainer::-webkit-scrollbar {
+    display: none;
+}
 .inputWrapper {
     width: 600px;
     height: 44px;
@@ -179,7 +182,17 @@ nav {
 .inputWrapper button:hover {
     cursor: pointer;
 }
-
+#recommendedSearch {
+    max-height: 160px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;  
+    border-bottom-left-radius: 22.5px;
+    border-bottom-right-radius: 22.5px;
+}
+#recommendedSearch::-webkit-scrollbar {
+    display: none;
+}
 #recommendedSearch li{
     padding: 0 10px;
     list-style: none;
@@ -212,7 +225,7 @@ nav {
 #image-container {
     min-width: 45%;
     height: 70%;
-    background: url('https://www.kolpaper.com/wp-content/uploads/2020/12/Luke-Skywalker-Wallpaper-4.jpg');
+    background: url('https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Amidala.png/220px-Amidala.png');
     background-size: cover;
     background-position-x: center;
     border-radius: 20px;

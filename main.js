@@ -1,3 +1,4 @@
+/////    LOCAL STORAGE FUNCTIONS /////
 /*
     @desc: Recursive function to iterate through all the characters in swapi/people endpoint.
     The charactersStr array is populated with the character names. Saves array to local storage
@@ -35,6 +36,7 @@ if (localStorage.storedCharacterArray) {
 }
 
 
+/////     HELPER FUNCTIONS     /////
 /*
     @desc: Converts one Unit to another ex: cm -> ft, kg -> lb
 */
@@ -45,6 +47,8 @@ var kilogramsToPounds = function (kilograms) {
     return kilograms * 2.20462
 }
 
+
+/////     GETTING DATA/ RENDERING DATA     /////
 /*
     @desc: Converts the inputed film name string to a predetermined abbreviation
     @param: The film name str to convert to abbreviation
@@ -99,8 +103,8 @@ var getFilm = async function (filmUrl) {
     @catch: populates the character description with a failed message
     @finally: removes the page loader and toggles the main content collapse class to have the content appear
 */
-var populateData = function () {
-    fetch('https://swapi.dev/api/people/1')
+var populateData = function (characterNum) {
+    fetch(`https://swapi.dev/api/people/${characterNum}`)
         .then(response => response.json())
         .then(data => {
             descriptionContainer.innerHTML = `
@@ -127,20 +131,44 @@ var populateData = function () {
         })
 }
 
+
+/////     SEARCH/ANIMATIONS     /////
 /*
     @desc: class toggled animations and executes the populate data function
 */
-var search = function () {
-    mainSearchContainer.classList.toggle('collapse-z');
-    pageLoader.classList.toggle('hidden')
-    populateData()
-    setTimeout(() => {
-        pageLoader.classList.toggle('opacity1')
-        mainSearchContainer.classList.toggle('hidden')
-        mainContentContainer.classList.toggle('hidden')
-    }, 300)
+var search = function (characterName) {
+    let indexOfCharacter = charactersStr.indexOf(characterName)
+    if (indexOfCharacter >= 16) {
+        indexOfCharacter += 1;
+    }
+    console.log(indexOfCharacter)
+    console.log(charactersStr[indexOfCharacter])
+    if (indexOfCharacter != -1) {
+        mainSearchContainer.classList.toggle('collapse-z');
+        pageLoader.classList.toggle('hidden')
+        populateData(indexOfCharacter + 1)
+        setTimeout(() => {
+            pageLoader.classList.toggle('opacity1')
+            mainSearchContainer.classList.toggle('hidden')
+            mainContentContainer.classList.toggle('hidden')
+        }, 300)
+    } else {
+        alert('not a character')
+    }
 }
 
+var clearSuggestedList = function () {
+    recommendedSearch.innerHTML = ''
+}
+
+var renderToSuggestedList = function (suggestedSearchResults) {
+    clearSuggestedList()
+    suggestedSearchResults.forEach(element => {
+        const newLi = document.createElement('li')
+        newLi.innerText = element
+        recommendedSearch.append(newLi)
+    })
+}
 /*
     @desc: Reveals all of the nav-items
 */
@@ -150,21 +178,39 @@ var toggleNavItems = function () {
         element.classList.toggle('reveal')
     })
 };
+
+
+/////     EVENT LISTENERS     /////
 /*
     @desc: Clicking the nav toggle button will reveal all the nav-items
 */
 navToggle.addEventListener('click', toggleNavItems)
 
-searchBtn.addEventListener('click', search);
+searchBtn.addEventListener('click', function () {
+    search(search.firstSuggestedInput)
+});
 
 document.addEventListener('keyup', event => {
     if (event.key === 'Enter') {
-        search();
+        search(search.firstSuggestedInput);
     };
-    console.log(event.key)
 });
 
-searchInput.addEventListener('input', function () {
-    let inputValue = this.inputValue
+searchInput.addEventListener('input', async function () {
+    let inputValueStr = searchInput.value.toLowerCase()
+    if (inputValueStr != '') {
+        let suggestedSearchResults = charactersStr.filter(element => element.includes(inputValueStr))
+        search.firstSuggestedInput = suggestedSearchResults[0]
+        renderToSuggestedList(suggestedSearchResults)
+    } else {
+        clearSuggestedList()
+    }
+})
 
+recommendedSearch.addEventListener('click', function (e) {
+    const targetElement = e.target.innerText
+    searchInput.value = targetElement
+    search.firstSuggestedInput = targetElement
+    clearSuggestedList()
+    renderToSuggestedList([targetElement])
 })

@@ -1,3 +1,0 @@
-const characters = [
-    'luke skywalker'
-]
