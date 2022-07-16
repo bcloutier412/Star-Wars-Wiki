@@ -1,0 +1,3 @@
+const characters = [
+    'luke skywalker'
+]

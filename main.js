@@ -1,10 +1,47 @@
 /*
+    @desc: Recursive function to iterate through all the characters in swapi/people endpoint.
+    The charactersStr array is populated with the character names. Saves array to local storage
+    @param: url (api endpoint)
+*/
+let charactersStr = []
+var populateCharacterArray = async function (url = 'https://swapi.dev/api/people/?page=1') {
+    await fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            for (let i = 0; i < data.results.length; i++) {
+                const characterName = data.results[i].name
+                const lowercaseCharacterName = characterName.toLowerCase()
+                charactersStr.push(lowercaseCharacterName)
+            }
+            if (data.next) {
+                return populateCharacterArray(data.next)
+            } else {
+                localStorage.storedCharacterArray = JSON.stringify(charactersStr)
+                return
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+/*
+    @desc: If the character array is stored in local storage it will populate the charactersStr array with the data
+    If not we will execute the populateCharacterArray
+*/
+if (localStorage.storedCharacterArray) {
+    charactersStr = JSON.parse(localStorage.storedCharacterArray)
+} else {
+    populateCharacterArray()
+}
+
+
+/*
     @desc: Converts one Unit to another ex: cm -> ft, kg -> lb
 */
-var centimetersToFeet = function(centimeters) {
+var centimetersToFeet = function (centimeters) {
     return centimeters * 0.0328084
 }
-var kilogramsToPounds = function(kilograms) {
+var kilogramsToPounds = function (kilograms) {
     return kilograms * 2.20462
 }
 
@@ -12,8 +49,8 @@ var kilogramsToPounds = function(kilograms) {
     @desc: Converts the inputed film name string to a predetermined abbreviation
     @param: The film name str to convert to abbreviation
 */
-var shortenFilmName = function(filmStr) {
-    switch(filmStr) {
+var shortenFilmName = function (filmStr) {
+    switch (filmStr) {
         case 'A New Hope':
             return 'A.N.H';
         case 'The Empire Strikes Back':
@@ -29,10 +66,10 @@ var shortenFilmName = function(filmStr) {
     @desc: Takes a give array of film endpoints and fetches the data at each URL.
     It then pushes a comma separated list as the innerText of the #films element
     @param: films: The array of endpoint URLS
-*/  
-var renderFilms = async function(films) {
+*/
+var renderFilms = async function (films) {
     const filmsArray = []
-    for (let film of films){
+    for (let film of films) {
         let filmItem = await getFilm(film);
         filmsArray.push(shortenFilmName(filmItem))
     }
@@ -43,12 +80,12 @@ var renderFilms = async function(films) {
     @desc: Uses the fetch API and returns the title of the film
     @param: The films API endpoint
 */
-var getFilm = async function(filmUrl) {
+var getFilm = async function (filmUrl) {
     try {
         let response = await fetch(filmUrl);
         let data = await response.json()
         return data.title
-    } catch(error) {
+    } catch (error) {
         descriptionContainer.innerHTML = 'Failed To Fetch Data'
         console.log(error)
     }
@@ -62,11 +99,11 @@ var getFilm = async function(filmUrl) {
     @catch: populates the character description with a failed message
     @finally: removes the page loader and toggles the main content collapse class to have the content appear
 */
-var populateData = function() {
+var populateData = function () {
     fetch('https://swapi.dev/api/people/1')
-    .then(response => response.json())
-    .then(data => {
-        descriptionContainer.innerHTML = `
+        .then(response => response.json())
+        .then(data => {
+            descriptionContainer.innerHTML = `
         Name: <span class="data">${data.name}</span><br>
         HEIGHT: <span class="data">${parseFloat(centimetersToFeet(data.height)).toFixed(2)}</span> ft<br>
         MASS: <span class="data">${parseFloat(kilogramsToPounds(data.mass)).toFixed(2)}</span> lb<br>
@@ -76,24 +113,24 @@ var populateData = function() {
         Birth YEAR: <span class="data">${data.birth_year}</span><br>
         GENDER: <span class="data">${data.gender}</span><br>
         FILMS: <span class="data"><span id="films"></span></span>`
-        renderFilms(data.films)
-    })
-    .catch(error => {
-        descriptionContainer.innerHTML = 'Failed To Fetch Data'
-        console.error(error)
-    })
-    .finally(function() {
-        pageLoader.classList.toggle('opacity1')
-        setTimeout(() => {
-            mainContentContainer.classList.toggle('collapse-z')
-        }, 500);
-    })
+            renderFilms(data.films)
+        })
+        .catch(error => {
+            descriptionContainer.innerHTML = 'Failed To Fetch Data'
+            console.error(error)
+        })
+        .finally(function () {
+            pageLoader.classList.toggle('opacity1')
+            setTimeout(() => {
+                mainContentContainer.classList.toggle('collapse-z')
+            }, 500);
+        })
 }
 
 /*
     @desc: class toggled animations and executes the populate data function
 */
-var search = function() {
+var search = function () {
     mainSearchContainer.classList.toggle('collapse-z');
     pageLoader.classList.toggle('hidden')
     populateData()
@@ -107,7 +144,7 @@ var search = function() {
 /*
     @desc: Reveals all of the nav-items
 */
-var toggleNavItems = function() {
+var toggleNavItems = function () {
     navToggle.classList.toggle('rotate')
     navItems.forEach((element) => {
         element.classList.toggle('reveal')
@@ -127,6 +164,7 @@ document.addEventListener('keyup', event => {
     console.log(event.key)
 });
 
-searchInput.addEventListener('input', function() {
-    // alert(this.value)
+searchInput.addEventListener('input', function () {
+    let inputValue = this.inputValue
+
 })
