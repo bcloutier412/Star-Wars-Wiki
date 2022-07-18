@@ -203,6 +203,7 @@ searchInput.addEventListener('input', async function () {
         search.firstSuggestedInput = suggestedSearchResults[0]
         renderToSuggestedList(suggestedSearchResults)
     } else {
+        search.firstSuggestedInput = undefined
         clearSuggestedList()
     }
 })
