@@ -141,8 +141,6 @@ var search = function (characterName) {
     if (indexOfCharacter >= 16) {
         indexOfCharacter += 1;
     }
-    console.log(indexOfCharacter)
-    console.log(charactersStr[indexOfCharacter])
     if (indexOfCharacter != -1) {
         mainSearchContainer.classList.toggle('collapse-z');
         pageLoader.classList.toggle('hidden')
@@ -172,19 +170,19 @@ var renderToSuggestedList = function (suggestedSearchResults) {
 /*
     @desc: Reveals all of the nav-items
 */
-var toggleNavItems = function () {
-    navToggle.classList.toggle('rotate')
-    navItems.forEach((element) => {
-        element.classList.toggle('reveal')
-    })
-};
+// var toggleNavItems = function () {
+//     navToggle.classList.toggle('rotate')
+//     navItems.forEach((element) => {
+//         element.classList.toggle('reveal')
+//     })
+// };
 
 
 /////     EVENT LISTENERS     /////
 /*
     @desc: Clicking the nav toggle button will reveal all the nav-items
 */
-navToggle.addEventListener('click', toggleNavItems)
+// navToggle.addEventListener('click', toggleNavItems)
 
 searchBtn.addEventListener('click', function () {
     search(search.firstSuggestedInput)
