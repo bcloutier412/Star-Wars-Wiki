@@ -225,7 +225,6 @@ nav {
 #image-container {
     min-width: 45%;
     height: 70%;
-    background: url('https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Amidala.png/220px-Amidala.png');
     background-size: cover;
     background-position-x: center;
     border-radius: 20px;
