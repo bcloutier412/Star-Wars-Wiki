@@ -1,7 +1,7 @@
 /////    LOCAL STORAGE FUNCTIONS /////
 /*
     @desc: Recursive function to iterate through all the characters in swapi/people endpoint.
-    The charactersStr array is populated with the character names. Saves array to local storage
+    The charactersStr array is populated with the character names. Saves array to local storage to decrease load time in subsequent visits
     @param: url (api endpoint)
 */
 let charactersStr = []
