@@ -229,3 +229,5 @@ recommendedSearch.addEventListener("click", function (e) {
   clearSuggestedList();
   renderToSuggestedList([targetElement]);
 });
+
+document.querySelector(".home-btn").addEventListener('click', () => location.reload())
