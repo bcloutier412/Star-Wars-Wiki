@@ -126,7 +126,13 @@ var populateData = function (characterNum) {
       )
         .then((response) => response.json())
         .then((data) => {
-          imageContainer.style.backgroundImage = `url(${data.items[0].link})`;
+            const filteredItems = data.items.filter((item) => {return item.title.includes("StarWars.com")})
+            if (filteredItems.length) {
+                imageContainer.style.backgroundImage = `url(${filteredItems[0].link})`;
+            }
+            else {
+                imageContainer.style.backgroundImage = `url(https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png)`;
+            }
         });
     })
     .catch((error) => {
